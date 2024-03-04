@@ -1,0 +1,26 @@
+import os , shutil , time 
+
+source = "Images"
+destination = "OrganisedFiles"
+
+listOfFiles = os.listdir(source)
+# print(listOfFiles)
+
+for i in listOfFiles : 
+    name , ext = os.path.splitext(i)
+    # print(name)
+    if ext == "" :
+        continue
+    if ext in [".txt",".docx"] :
+        path1 = source + "/" + i 
+        path2 = destination + "/" + "imageFiles" 
+        path3 = destination + "/" + "imageFiles" + "/" + i       
+        if os.path.exists(path2) : 
+            print("Moving File", i )
+            shutil.move(path1,path3)
+        else : 
+            print("Image Folder Doesn't Exist")
+            os.mkdir(path2)
+            print("Folder Created")
+            print("Moving File" , i)
+            shutil.move(path1,path3)
